@@ -1,0 +1,37 @@
+{
+  "name": "@sgmap/monuments-historiques",
+  "version": "0.1.0",
+  "description": "Tools to build and improve Monuments Historiques datasets",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint *.js lib/*.js",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sgmap/monuments-historiques.git"
+  },
+  "author": "Jérôme Desboeufs <jerome@beta.gouv.fr>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sgmap/monuments-historiques/issues"
+  },
+  "homepage": "https://github.com/sgmap/monuments-historiques#readme",
+  "dependencies": {
+    "JSONStream": "^1.1.1",
+    "async": "^2.0.0-rc.3",
+    "bluebird": "^3.3.5",
+    "debug": "^2.2.0",
+    "iconv-lite": "^0.4.13",
+    "lodash": "^4.10.0",
+    "mongodb": "^2.1.16",
+    "pg": "^4.5.3",
+    "pg-format": "^1.0.2",
+    "request": "^2.71.0",
+    "stream-combiner": "^0.2.2",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.7.0"
+  }
+}
