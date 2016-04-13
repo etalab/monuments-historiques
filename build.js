@@ -112,31 +112,25 @@ function importDataset(dataset) {
     });
 }
 
-function removeData() {
-    debug('removing data');
+function cleanCollection() {
+    debug('cleaning collection');
     return getCollection().then(servColl => servColl.remove({}));
 }
 
-function removeAssietteIndex() {
-    debug('removing index');
-    return getCollection().then(servColl => servColl.createIndex({ assiette: '2dsphere' }));
+function dropIndexes() {
+    debug('dropping all indexes');
+    return getCollection().then(servColl => servColl.dropAllIndexes());
 }
 
-function createAssietteIndex() {
-    debug('creating index');
-    return getCollection().then(servColl => servColl.createIndex({ assiette: '2dsphere' }));
-}
-
-function importAllDatasets() {
+function importAllSources() {
     return Promise.each(sources, importDataset);
 }
 
-removeAssietteIndex()
-    .then(removeData)
-    .then(importAllDatasets)
-    .then(createAssietteIndex)
+dropIndexes()
+    .then(cleanCollection)
+    .then(importAllSources)
     .then(() => {
-        console.log('Import terminé');
+        debug('finished!');
         console.log('Couverture (départements): %s', JSON.stringify(Array.from(globalCoverage.values()).map(dep => dep.substr(3, 2))));
         process.exit(0);
     })

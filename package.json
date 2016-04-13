@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint *.js lib/*.js",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "build": "DEBUG=prepare-data node build",
+    "dump": "mkdir -p dist; mongoexport -d urba -c servitudes --jsonArray -o dist/servitudes.json"
   },
   "repository": {
     "type": "git",
