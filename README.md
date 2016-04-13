@@ -1,2 +1,2 @@
 # monuments-historiques
-Référentiels liés aux monuments historiques classés ou inscrits
+Construction de référentiels liés aux Monuments Historiques classés ou inscrits
