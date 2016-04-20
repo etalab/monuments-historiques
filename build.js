@@ -116,12 +116,12 @@ function importDataset(dataset) {
 
 function cleanCollection() {
     debug('cleaning collection');
-    return getCollection().then(servColl => servColl.remove({}));
+    return getCollection('servitudes').then(servColl => servColl.remove({}));
 }
 
 function dropIndexes() {
     debug('dropping all indexes');
-    return getCollection().then(servColl => servColl.dropIndexes())
+    return getCollection('servitudes').then(servColl => servColl.dropIndexes())
         // We must catch the following error. It's not a bug, it's a feature!
         .catch(err => {
             if (err.message.indexOf('ns not found') >= 0) return;

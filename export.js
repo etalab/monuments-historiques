@@ -11,6 +11,6 @@ function streamCollectionToFile(collection) {
     });
 }
 
-getCollection()
+getCollection('servitudes')
     .then(streamCollectionToFile)
     .then(() => process.exit(0));
