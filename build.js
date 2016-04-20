@@ -18,8 +18,10 @@ const globalCoverage = new Set();
 
 // let pgEnd;
 
+const PG_URL = process.env.PG_URL || process.env.npm_package_config_PG_URL;
+
 const pgClient = new Promise((resolve, reject) => {
-    pg.connect(process.env.PG_URI || 'postgres://localhost/urba', function (err, client/*, done*/) {
+    pg.connect(PG_URL, function (err, client/*, done*/) {
         if (err) return reject(err);
         // pgEnd = _.once(done);
         resolve(client);
@@ -119,7 +121,12 @@ function cleanCollection() {
 
 function dropIndexes() {
     debug('dropping all indexes');
-    return getCollection().then(servColl => servColl.dropAllIndexes());
+    return getCollection().then(servColl => servColl.dropIndexes())
+        // We must catch the following error. It's not a bug, it's a feature!
+        .catch(err => {
+            if (err.message.indexOf('ns not found') >= 0) return;
+            throw err;
+        });
 }
 
 function importAllSources() {

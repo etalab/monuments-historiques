@@ -1,0 +1,17 @@
+builder:
+    build: .
+    container_name: mh-builder
+    links:
+        - postgis:postgis
+        - mongodb:mongodb
+    environment:
+        postgis_host: postgis
+        mongodb_url: mongodb://mongodb
+
+postgis:
+    image: mdillon/postgis
+    container_name: mh-builder-postgis
+
+mongodb:
+    image: mongo
+    container_name: mh-builder-mongodb

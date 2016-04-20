@@ -1,0 +1,11 @@
+postgis:
+    image: mdillon/postgis
+    container_name: mh-builder-postgis
+    ports:
+        - "5432:5432"
+
+mongodb:
+    image: mongo
+    container_name: mh-builder-mongodb
+    ports:
+        - "27017:27017"
